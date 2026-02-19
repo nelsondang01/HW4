@@ -1,6 +1,14 @@
 "use strict";
 
-// Exercise 3: Generate random number 1-100, prompt until correct (assume valid entry)
+/*
+Exercise 3:
+Generate random number 1-100 inclusive
+Prompt user to guess (assume valid entry)
+After each guess, console:
+- Too low, guess again
+- Too high, guess again
+- Correct + attempts count
+*/
 
 const secret = Math.floor(Math.random() * 100) + 1;
 let attempts = 0;

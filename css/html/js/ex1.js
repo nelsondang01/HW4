@@ -1,31 +1,41 @@
 "use strict";
-// Exercise 1: Validate Input (1-100)
-// Test with numeric, non-numeric, spaces, and blank input.
 
-const raw = prompt("Enter a whole number between 1 and 100:");
+/*
+Exercise 1:
+Ask the user for a number between 1 and 100.
+Output to console:
+- Valid: "Thank you! You entered XX, a valid number."
+- Invalid: "Sorry, XX is not a valid entry."
+Test: numeric, non-numeric, spaces, blank
+*/
 
-let message = "";
+const input = prompt("Enter a whole number between 1 and 100:");
 
-if (raw === null) {
-  // user hit Cancel
-  message = "Sorry, Cancel is not a valid entry.";
+let output = "";
+
+if (input === null) {
+  output = "Sorry, Cancel is not a valid entry.";
 } else {
-  const trimmed = raw.trim();
+  const trimmed = input.trim();
 
-  // blank or spaces only
   if (trimmed === "") {
-    message = "Sorry, (blank) is not a valid entry.";
+    output = "Sorry, (blank) is not a valid entry.";
   } else {
-    // parse to number
-    const num = Number.parseInt(trimmed, 10);
+    // Require an integer format (no letters, no decimals)
+    const isIntegerString = /^-?\d+$/.test(trimmed);
 
-    // Must be an integer, not NaN, and between 1-100
-    if (!Number.isNaN(num) && Number.isInteger(num) && String(num) === String(Number.parseInt(trimmed, 10)) && num >= 1 && num <= 100) {
-      message = `Thank you! You entered ${num}, a valid number.`;
+    if (!isIntegerString) {
+      output = `Sorry, ${input} is not a valid entry.`;
     } else {
-      message = `Sorry, ${raw} is not a valid entry.`;
+      const num = Number.parseInt(trimmed, 10);
+
+      if (Number.isInteger(num) && num >= 1 && num <= 100) {
+        output = `Thank you! You entered ${num}, a valid number.`;
+      } else {
+        output = `Sorry, ${input} is not a valid entry.`;
+      }
     }
   }
 }
 
-console.log(message);
+console.log(output);
