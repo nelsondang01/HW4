@@ -1,21 +1,13 @@
 "use strict";
 
-const randomNumber = Math.floor(Math.random() * 100) + 1;
-let attempts = 0;
+// Change all paragraph elements to bold with yellow background
+const changeParagraphs = () => {
+  const paragraphs = document.querySelectorAll("p");
 
-let guess = Number.parseInt(prompt("Guess a number between 1 and 100:"), 10);
-attempts++;
+  for (const p of paragraphs) {
+    p.style.fontWeight = "bold";
+    p.style.backgroundColor = "yellow";
+  }
+};
 
-while (guess !== randomNumber) {
-
-    if (guess < randomNumber) {
-        console.log("Too low, guess again");
-    } else {
-        console.log("Too high, guess again");
-    }
-
-    guess = Number.parseInt(prompt("Guess again:"), 10);
-    attempts++;
-}
-
-console.log(`Correct! It took you ${attempts} attempts to guess the correct number.`);
+changeParagraphs();
